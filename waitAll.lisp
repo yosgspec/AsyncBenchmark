@@ -3,7 +3,7 @@
 #| フィボナッチ関数 |#
 (defun fib(n) (if(< n 2) n (+(fib (1- n)) (fib(- n 2)))))
 #| タイマーの経過時間 |#
-(defun getTick(t-) (/(*(-(get-internal-real-time) t-))(get-internal-real-time)))
+(defun getTick(t-) (*(-(get-internal-real-time) t-) 1e-6))
 
 #| テスト関数 |#
 (defun myFunc(taskName i v timer)
