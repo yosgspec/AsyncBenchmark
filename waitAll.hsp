@@ -1,0 +1,153 @@
+#runtime "hsp3cl"
+#cmpopt varinit 1
+#packopt NAME "waitall"
+#include "hspda.as"
+randomize
+sdim lf: poke lf,,10
+
+#define global ctype getNow (((gettime(4))*60+gettime(5))*60+gettime(6))*1000+gettime(7)
+#define global ctype getTick(%1) 1e-3*(getNow()-%1)
+
+#module myFuncs
+	/* 
+	%index
+	tarai
+	たらい回し関数
+	%*/
+	#defcfunc tarai int x, int y, int z
+		if x<=y: return y: else: return tarai(tarai(x-1,y,z),tarai(y-1,z,x),tarai(z-1,x,y))
+	/* 
+	%index
+	fib
+	フィボナッチ関数
+	%*/
+	#defcfunc fib int n
+		if n<2: return n: else: return fib(n-1)+fib(n-2)
+
+	/* 
+	%index
+	myFunc
+	テスト関数
+	%*/
+	#defcfunc myFunc str _taskName, int _i, int _v, int _timer
+		ddim ticks
+		ddim spans
+		ticks(0) = getTick(_timer)
+		wait 1e-1*_v*100
+		ticks(length(ticks)) = getTick(_timer)
+		spans(0) = ticks(length(ticks)-1)-ticks(length(ticks)-2) 
+		_=tarai(12, 6, 0)
+		ticks(length(ticks)) = getTick(_timer)
+		spans(length(spans)) = ticks(length(ticks)-1)-ticks(length(ticks)-2) 
+		fibResult = fib(30+_v)
+		ticks(length(ticks)) = getTick(_timer)
+		spans(length(spans)) = ticks(length(ticks)-1)-ticks(length(ticks)-2) 
+		result = strf("HSP	%s	%d	%d	%d", _taskName, _i, _v, fibResult)
+		#define concat(%1, %2) foreach %2: %1+=strf("\t%%.3f", %2.cnt): loop
+		concat result, ticks
+		concat result, spans
+		return result
+
+	/* 
+	%index
+	myFuncWriteFile
+	テスト関数(ファイル書込)
+	%*/
+	#deffunc myFuncWriteFile str _fileName, str _taskName, int _i, int _v, int _timer
+		sdim note
+		notesel note
+			result = myFunc(_taskName, _i, _v, _timer)
+			noteadd result
+			notesave _fileName+_i
+		noteunsel
+		return
+#global
+
+sdim taskName@Program
+dim timer@Program
+dim values@Program
+#module Program
+	/* 
+	%index
+	gosub *syncAll
+	同期タスク
+	%*/
+	*syncAll
+		sdim result,, length(values)
+		foreach result
+			result.cnt = myFunc(taskName, cnt, values.cnt, timer)
+		loop
+		return
+
+	/* 
+	%index
+	gosub *execAll
+	非同期タスク(コマンド送信)
+	%*/
+	*execAll
+		#uselib "kernel32"
+		#func GetModuleFileName "GetModuleFileNameA" int,int,int
+		sdim moduleFileName
+		GetModuleFileName,varptr(moduleFileName),256
+		thisExe = getpath(moduleFileName, 8)
+
+		sdim result,, length(values)
+
+		fileName = str(rnd(32768)*rnd(32768))
+
+		foreach values
+			#define args fileName, taskName, cnt, values.cnt, timer
+			if thisExe="hsp3cl.exe" {
+				myFuncWriteFile args
+			}
+			else {
+				exec strf("%s %s,%s,%d,%d,%d", thisExe, args)
+			}
+		loop
+
+		sdim note
+		notesel note
+		sdim row
+		do
+			isCompleted = 1
+			foreach result
+				if result(cnt) ! "": continue
+				isCompleted = 0
+				fileNameCnt = fileName+cnt
+				exist fileNameCnt
+				if -1!strsize {
+					noteload fileNameCnt
+					noteget row
+					delete fileNameCnt
+					result(cnt) = row
+				}
+			loop
+			wait 1
+		until isCompleted
+		return
+	
+	#deffunc main
+		resultAll = "#Lang	Task	Index	Value	Result	Start	Sleeped	Taraied	Fibed	SleepTime	TaraiTime	FibTime"
+		taskNames = "sync", "exec"
+		tasks = *syncAll, *execAll
+		dim values, 10
+		foreach values: values.cnt=10-cnt: loop
+		foreach tasks
+			timer = getNow()
+			taskName = taskNames.cnt
+			gosub tasks.cnt
+			foreach result: resultAll+=lf@+result.cnt: loop
+			mes strf("!%s:%.3f", taskName, getTick(timer))+lf@,1
+		loop
+		mes resultAll+lf@,1
+		return
+#global
+
+if dir_cmdline = "" {
+	main
+}
+else {
+	args = dir_cmdline
+	split args, ",", args
+	myFuncWriteFile args(0), args(1), int(args(2)), int(args(3)), int(args(4))
+}
