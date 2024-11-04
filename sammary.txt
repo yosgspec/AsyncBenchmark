@@ -103,21 +103,21 @@ C#/dotnet script(4)!sync: 8.277
 C#/dotnet script(4)!async: 1.920
 C#/dotnet script(4)!thread: 1.929
 C#/dotnet script(4)!parallel: 1.890
-CommonLisp/sbcl(0)!total: 11.522
-CommonLisp/sbcl(0)!sync: sync
-CommonLisp/sbcl(0)!thread: thread
-CommonLisp/sbcl(1)!total: 11.503
-CommonLisp/sbcl(1)!sync: sync
-CommonLisp/sbcl(1)!thread: thread
-CommonLisp/sbcl(2)!total: 11.472
-CommonLisp/sbcl(2)!sync: sync
-CommonLisp/sbcl(2)!thread: thread
-CommonLisp/sbcl(3)!total: 11.522
-CommonLisp/sbcl(3)!sync: sync
-CommonLisp/sbcl(3)!thread: thread
-CommonLisp/sbcl(4)!total: 11.484
-CommonLisp/sbcl(4)!sync: sync
-CommonLisp/sbcl(4)!thread: thread
+CommonLisp/sbcl(0)!total	11.490
+CommonLisp/sbcl(0)!sync	9.211
+CommonLisp/sbcl(0)!thread	2.235
+CommonLisp/sbcl(1)!total: 11.506
+CommonLisp/sbcl(1)!sync: 9.176
+CommonLisp/sbcl(1)!thread: 2.284
+CommonLisp/sbcl(2)!total: 11.850
+CommonLisp/sbcl(2)!sync: 9.267
+CommonLisp/sbcl(2)!thread: 2.536
+CommonLisp/sbcl(3)!total: 11.926
+CommonLisp/sbcl(3)!sync: 9.237
+CommonLisp/sbcl(3)!thread: 2.635
+CommonLisp/sbcl(4)!total: 11.638
+CommonLisp/sbcl(4)!sync: 9.196
+CommonLisp/sbcl(4)!thread: 2.402
 Python/pypy(0)!total: 33.247
 Python/pypy(0)!sync: 10.863
 Python/pypy(0)!async: 5.295
