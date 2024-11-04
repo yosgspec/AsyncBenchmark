@@ -1,6 +1,6 @@
 #runtime "hsp3cl"
 #cmpopt varinit 1
-#packopt NAME "waitall"
+#packopt NAME "waitall_hsp"
 #include "hspda.as"
 randomize
 sdim lf: poke lf,,10
@@ -92,17 +92,11 @@ dim values@Program
 		thisExe = getpath(moduleFileName, 8)
 
 		sdim result,, length(values)
-
 		fileName = str(rnd(32768)*rnd(32768))
-
 		foreach values
 			#define args fileName, taskName, cnt, values.cnt, timer
-			if thisExe="hsp3cl.exe" {
-				myFuncWriteFile args
-			}
-			else {
-				exec strf("%s %s,%s,%d,%d,%d", thisExe, args)
-			}
+			if thisExe="hsp3cl.exe" {myFuncWriteFile args}
+			else {exec strf("%s %s,%s,%d,%d,%d", thisExe, args)}
 		loop
 
 		sdim note
@@ -131,13 +125,14 @@ dim values@Program
 		taskNames = "sync", "exec"
 		tasks = *syncAll, *execAll
 		dim values, 10
-		foreach values: values.cnt=10-cnt: loop
+		foreach values: values.cnt=length(values)-cnt: loop
 		foreach tasks
-			timer = getNow()
 			taskName = taskNames.cnt
+			mes strf("!%s: ", taskName),1
+			timer = getNow()
 			gosub tasks.cnt
 			foreach result: resultAll+=lf@+result.cnt: loop
-			mes strf("!%s:%.3f", taskName, getTick(timer))+lf@,1
+			mes strf("%.3f", getTick(timer))+lf@,1
 		loop
 		mes resultAll+lf@,1
 		return

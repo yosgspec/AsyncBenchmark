@@ -7,7 +7,7 @@ const tarai = (x,y,z)=>x<=y? y: tarai(tarai(x-1,y,z),tarai(y-1,z,x),tarai(z-1,x,
 /** フィボナッチ関数 */
 const fib = n=>n<2? n: fib(n-1)+fib(n-2);
 /** タイマーの経過時間 */
-const getTick = t=>(Date.now()-t)*1e-3;
+const getTick = t=>(performance.now()-t)*1e-3;
 
 /** テスト関数 */
 async function myFunc(taskName, i, v, timer){
@@ -88,9 +88,10 @@ async function main(){
 	]
 	const values = [...Array(10)].map((_,i,l)=>l.length-i);
 	for(const [taskName, task] of tasks){
-		const timer = Date.now();
+		process.stdout.write(`!${taskName}: `);
+		const timer = performance.now();
 		result.push(...await task(taskName, values, timer));
-		console.log(`!${taskName}:${getTick(timer).toFixed(3)}s`);
+		console.log(getTick(timer).toFixed(3));
 	}
 	console.log(result.map(row=>row.join("\t")).join("\n"));
 	process.exit();

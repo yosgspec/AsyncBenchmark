@@ -29,6 +29,11 @@ async Task<string[]> myFunc(string taskName, int i, int v, Stopwatch timer){
 	spans.Add(ticks[^1]-ticks[^2]);
 	return new[]{"C#", taskName, $"{i}", $"{v}", $"{fibResult}"}.Concat(ticks.Concat(spans).Select(t=>$"{t:F3}")).ToArray();
 }
+/// <summary>テスト関数(同期)</summary>
+Func<string,int,int,Stopwatch,string[]> myFuncSync = (taskName,i,v,timer)=>myFunc(taskName,i,v,timer).Result;
+/// <summary>テスト関数(配列参照代入)</summary>
+Action<ConcurrentDictionary<int, string[]>,string,int,int,Stopwatch> myFuncSyncRefs =
+	(result,taskName,i,v,timer)=>result[i] = myFuncSync(taskName,i,v,timer);
 
 /// <summary>同期タスク</summary>
 async Task<List<string[]>> syncAll(string taskName, int[] values, Stopwatch timer){
@@ -46,10 +51,7 @@ async Task<List<string[]>> asyncAll(string taskName, int[] values, Stopwatch tim
 Task<List<string[]>> threadAll(string taskName, int[] values, Stopwatch timer) {
 	var result = new ConcurrentDictionary<int, string[]>();
 	values.Select((v, i)=>{
-		var thread = new Thread(()=>{
-			var index=i;
-			result[index] = myFunc(taskName, i, v, timer).Result;
-		});
+		var thread = new Thread(()=>myFuncSyncRefs(result, taskName, i, v, timer));
 		thread.Start();
 		return thread;
 	}).ToList().ForEach(thread=>thread.Join());
@@ -59,9 +61,7 @@ Task<List<string[]>> threadAll(string taskName, int[] values, Stopwatch timer) {
 /// <summary>非同期タスク(パラレル処理)</summary>
 Task<List<string[]>> parallelAll(string taskName, int[] values, Stopwatch timer){
 	var result = new ConcurrentDictionary<int,string[]>();
-	Parallel.For(0, values.Length, i=>{
-		result[i] = myFunc(taskName, i, values[i], timer).Result;
-	});
+	Parallel.For(0, values.Length, i=>myFuncSyncRefs(result, taskName, i, values[i], timer));
 	return Task.FromResult(result.OrderBy(v=>v.Key).Select(v=>v.Value).ToList());
 }
 
@@ -74,14 +74,15 @@ async Task main(){
 		("thread", threadAll),
 		("parallel", parallelAll),
 	};
-	var values = Enumerable.Range(1,10).Reverse();
+	var values = Enumerable.Range(1,10).Reverse().ToArray();
 	int ioMin;
 	ThreadPool.GetMinThreads(out _, out ioMin);
 	ThreadPool.SetMinThreads(values.Length, ioMin);
 	foreach(var (taskName, task)  in tasks){
+		Console.Write($"!{taskName}: ");
 		var timer = Stopwatch.StartNew();
 		result.AddRange(await task(taskName, values, timer));
-		Console.WriteLine($"!{taskName}:{getTick(timer):F3}");
+		Console.WriteLine("{0:F3}", getTick(timer));
 	}
 	Console.WriteLine(String.Join("\n", result.Select(row=>String.Join("\t", row))));
 }

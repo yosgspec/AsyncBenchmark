@@ -46,7 +46,7 @@
 )
 
 #| メイン関数 |#
-(defun main ()
+(defun main()
 	(let(
 		(result '(("#Lang" "Task" "Index" "Value" "Result" "Start" "Sleeped" "Taraied" "Fibed" "SleepTime" "TaraiTime" "FibTime")))
 		(tasks '(
@@ -56,10 +56,13 @@
 		(values (loop for i from 10 downto 1 collect i))
 	)
 		(dolist(task tasks)
-			(let((taskName (first task)) (taskFunc (second task))
-				(timer (get-internal-real-time)))
-				(setf result (nconc result (funcall taskFunc taskName values timer)))
-				(format t "!~A:~,3f~%" taskName (getTick timer))
+			(let((taskName (first task))
+				(task (second task))
+				(timer (get-internal-real-time))
+			)
+				(format t "!~A: " taskName)
+				(setf result (nconc result (funcall task taskName values timer)))
+				(format t "~,3f~%" taskName (getTick timer))
 			)
 		)
 		(format t "~{~A~%~}" (loop for r in result collect (format nil "~{~A~^	~}" r)))

@@ -1,0 +1,217 @@
+START/(0)!total: 0.000
+START/(1)!total: 0.000
+START/(2)!total: 0.000
+START/(3)!total: 0.000
+START/(4)!total: 0.000
+C++/g++(0)!total: 23.959
+C++/g++(0)!sync: 6.226
+C++/g++(0)!async: 6.208
+C++/g++(0)!thread: 1.207
+C++/g++(0)!parallel: 6.304
+C++/g++(1)!total: 24.089
+C++/g++(1)!sync: 6.218
+C++/g++(1)!async: 6.302
+C++/g++(1)!thread: 1.271
+C++/g++(1)!parallel: 6.372
+C++/g++(2)!total: 24.235
+C++/g++(2)!sync: 6.226
+C++/g++(2)!async: 6.310
+C++/g++(2)!thread: 1.278
+C++/g++(2)!parallel: 6.337
+C++/g++(3)!total: 24.112
+C++/g++(3)!sync: 6.248
+C++/g++(3)!async: 6.349
+C++/g++(3)!thread: 1.250
+C++/g++(3)!parallel: 6.302
+C++/g++(4)!total: 23.991
+C++/g++(4)!sync: 6.220
+C++/g++(4)!async: 6.262
+C++/g++(4)!thread: 1.206
+C++/g++(4)!parallel: 6.246
+D/dmd(0)!total: 11.721
+D/dmd(0)!sync: 7.183
+D/dmd(0)!parallel: 1.550
+D/dmd(0)!spawn: 1.547
+D/dmd(1)!total: 11.460
+D/dmd(1)!sync: 7.114
+D/dmd(1)!parallel: 1.539
+D/dmd(1)!spawn: 1.549
+D/dmd(2)!total: 11.517
+D/dmd(2)!sync: 7.160
+D/dmd(2)!parallel: 1.551
+D/dmd(2)!spawn: 1.548
+D/dmd(3)!total: 11.504
+D/dmd(3)!sync: 7.137
+D/dmd(3)!parallel: 1.551
+D/dmd(3)!spawn: 1.544
+D/dmd(4)!total: 11.530
+D/dmd(4)!sync: 7.156
+D/dmd(4)!parallel: 1.555
+D/dmd(4)!spawn: 1.546
+JavaScript/node(0)!total: 16.839
+JavaScript/node(0)!sync: 7.926
+JavaScript/node(0)!async: 2.547
+JavaScript/node(0)!timeout: 2.586
+JavaScript/node(0)!worker: 1.850
+JavaScript/node(0)!cluster: 1.871
+JavaScript/node(1)!total: 16.813
+JavaScript/node(1)!sync: 7.903
+JavaScript/node(1)!async: 2.539
+JavaScript/node(1)!timeout: 2.592
+JavaScript/node(1)!worker: 1.846
+JavaScript/node(1)!cluster: 1.878
+JavaScript/node(2)!total: 16.971
+JavaScript/node(2)!sync: 7.951
+JavaScript/node(2)!async: 2.608
+JavaScript/node(2)!timeout: 2.617
+JavaScript/node(2)!worker: 1.860
+JavaScript/node(2)!cluster: 1.880
+JavaScript/node(3)!total: 16.792
+JavaScript/node(3)!sync: 7.885
+JavaScript/node(3)!async: 2.560
+JavaScript/node(3)!timeout: 2.587
+JavaScript/node(3)!worker: 1.851
+JavaScript/node(3)!cluster: 1.854
+JavaScript/node(4)!total: 16.915
+JavaScript/node(4)!sync: 7.964
+JavaScript/node(4)!async: 2.569
+JavaScript/node(4)!timeout: 2.610
+JavaScript/node(4)!worker: 1.850
+JavaScript/node(4)!cluster: 1.868
+C#/dotnet script(0)!total: 14.698
+C#/dotnet script(0)!sync: 8.370
+C#/dotnet script(0)!async: 1.963
+C#/dotnet script(0)!thread: 1.919
+C#/dotnet script(0)!parallel: 1.916
+C#/dotnet script(1)!total: 14.517
+C#/dotnet script(1)!sync: 8.293
+C#/dotnet script(1)!async: 1.901
+C#/dotnet script(1)!thread: 1.916
+C#/dotnet script(1)!parallel: 1.905
+C#/dotnet script(2)!total: 14.501
+C#/dotnet script(2)!sync: 8.254
+C#/dotnet script(2)!async: 1.938
+C#/dotnet script(2)!thread: 1.906
+C#/dotnet script(2)!parallel: 1.900
+C#/dotnet script(3)!total: 14.542
+C#/dotnet script(3)!sync: 8.259
+C#/dotnet script(3)!async: 1.931
+C#/dotnet script(3)!thread: 1.932
+C#/dotnet script(3)!parallel: 1.918
+C#/dotnet script(4)!total: 14.518
+C#/dotnet script(4)!sync: 8.277
+C#/dotnet script(4)!async: 1.920
+C#/dotnet script(4)!thread: 1.929
+C#/dotnet script(4)!parallel: 1.890
+CommonLisp/sbcl(0)!total: 11.522
+CommonLisp/sbcl(0)!sync: sync
+CommonLisp/sbcl(0)!thread: thread
+CommonLisp/sbcl(1)!total: 11.503
+CommonLisp/sbcl(1)!sync: sync
+CommonLisp/sbcl(1)!thread: thread
+CommonLisp/sbcl(2)!total: 11.472
+CommonLisp/sbcl(2)!sync: sync
+CommonLisp/sbcl(2)!thread: thread
+CommonLisp/sbcl(3)!total: 11.522
+CommonLisp/sbcl(3)!sync: sync
+CommonLisp/sbcl(3)!thread: thread
+CommonLisp/sbcl(4)!total: 11.484
+CommonLisp/sbcl(4)!sync: sync
+CommonLisp/sbcl(4)!thread: thread
+Python/pypy(0)!total: 33.247
+Python/pypy(0)!sync: 10.863
+Python/pypy(0)!async: 5.295
+Python/pypy(0)!thread: 5.708
+Python/pypy(0)!process: 3.075
+Python/pypy(0)!futureThread: 5.591
+Python/pypy(0)!futureProcess: 2.405
+Python/pypy(1)!total: 33.066
+Python/pypy(1)!sync: 10.856
+Python/pypy(1)!async: 5.290
+Python/pypy(1)!thread: 5.624
+Python/pypy(1)!process: 2.509
+Python/pypy(1)!futureThread: 5.618
+Python/pypy(1)!futureProcess: 2.947
+Python/pypy(2)!total: 32.994
+Python/pypy(2)!sync: 10.854
+Python/pypy(2)!async: 5.310
+Python/pypy(2)!thread: 5.590
+Python/pypy(2)!process: 3.005
+Python/pypy(2)!futureThread: 5.604
+Python/pypy(2)!futureProcess: 2.416
+Python/pypy(3)!total: 32.505
+Python/pypy(3)!sync: 10.794
+Python/pypy(3)!async: 5.259
+Python/pypy(3)!thread: 5.647
+Python/pypy(3)!process: 2.545
+Python/pypy(3)!futureThread: 5.577
+Python/pypy(3)!futureProcess: 2.389
+Python/pypy(4)!total: 33.866
+Python/pypy(4)!sync: 10.857
+Python/pypy(4)!async: 5.307
+Python/pypy(4)!thread: 5.637
+Python/pypy(4)!process: 3.116
+Python/pypy(4)!futureThread: 5.679
+Python/pypy(4)!futureProcess: 2.927
+Python/python(0)!total: 175.491
+Python/python(0)!sync: 41.113
+Python/python(0)!async: 35.214
+Python/python(0)!thread: 35.624
+Python/python(0)!process: 13.830
+Python/python(0)!futureThread: 35.639
+Python/python(0)!futureProcess: 13.720
+Python/python(1)!total: 174.684
+Python/python(1)!sync: 40.604
+Python/python(1)!async: 35.005
+Python/python(1)!thread: 35.620
+Python/python(1)!process: 13.853
+Python/python(1)!futureThread: 35.713
+Python/python(1)!futureProcess: 13.746
+Python/python(2)!total: 175.311
+Python/python(2)!sync: 41.027
+Python/python(2)!async: 35.341
+Python/python(2)!thread: 35.591
+Python/python(2)!process: 13.720
+Python/python(2)!futureThread: 35.691
+Python/python(2)!futureProcess: 13.798
+Python/python(3)!total: 174.818
+Python/python(3)!sync: 40.605
+Python/python(3)!async: 34.841
+Python/python(3)!thread: 35.692
+Python/python(3)!process: 14.025
+Python/python(3)!futureThread: 35.588
+Python/python(3)!futureProcess: 13.926
+Python/python(4)!total: 174.756
+Python/python(4)!sync: 40.699
+Python/python(4)!async: 35.159
+Python/python(4)!thread: 35.592
+Python/python(4)!process: 13.873
+Python/python(4)!futureThread: 35.601
+Python/python(4)!futureProcess: 13.689
+HSP/hsp(0)!total: 106.699
+HSP/hsp(0)!sync: 79.060
+HSP/hsp(0)!exec: 27.518
+HSP/hsp(1)!total: 106.638
+HSP/hsp(1)!sync: 78.949
+HSP/hsp(1)!exec: 27.596
+HSP/hsp(2)!total: 106.282
+HSP/hsp(2)!sync: 78.667
+HSP/hsp(2)!exec: 27.530
+HSP/hsp(3)!total: 106.415
+HSP/hsp(3)!sync: 78.718
+HSP/hsp(3)!exec: 27.608
+HSP/hsp(4)!total: 106.637
+HSP/hsp(4)!sync: 78.883
+HSP/hsp(4)!exec: 27.669
+R/rscript(0)!total: 1340.240
+R/rscript(0)!sync: 15.673
+R/rscript(0)!parallel: 6.660
+R/rscript(1)!total: 1328.305
+R/rscript(1)!sync: 15.537
+R/rscript(1)!parallel: 6.597
+R/rscript(2)!total: 1330.238
+R/rscript(2)!sync: 15.572
+R/rscript(2)!parallel: 6.595
+R/rscript(3)!total: 1322.078
+R/rscript(3)!sync: 15.472
+R/rscript(3)!parallel: 6.559

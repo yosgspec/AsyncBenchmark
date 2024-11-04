@@ -10,14 +10,14 @@ tarai = lambda x,y,z: y if x<=y else tarai(tarai(x-1,y,z),tarai(y-1,z,x),tarai(z
 """フィボナッチ関数"""
 fib = lambda n: n if n<2 else fib(n-1)+fib(n-2)
 """タイマーの経過時間"""
-getTick = lambda t: time.time()-t
+getTick = lambda t: time.perf_counter()-t
 
 async def myFunc(taskName, i, v, timer):
 	"""テスト関数"""
 	ticks = []
 	spans = []
 	ticks.append(getTick(timer))
-	await asyncio.sleep(v*1e-3*100)
+	await asyncio.sleep(v*100*1e-3)
 	ticks.append(getTick(timer))
 	spans.append(ticks[-1]-ticks[-2])
 	tarai(12, 6, 0)
@@ -76,9 +76,10 @@ async def main():
 	for taskName, task, Executor in tasks:
 		if Executor is None: Executor = futures.ThreadPoolExecutor
 		with Executor(max_workers=len(values)) as executor:
-			timer = time.time()
+			print(f"!{taskName}: ", end="", flush=True)
+			timer = time.perf_counter()
 			result.extend(await task(taskName, values, timer, executor))
-			print(f"!{taskName}:{getTick(timer):.3f}")
+			print("%.3f" % getTick(timer))
 	print("\n".join("\t".join(row) for row in result))
 
 if __name__=="__main__":
